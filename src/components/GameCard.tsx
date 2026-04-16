@@ -11,24 +11,23 @@ interface Props {
 }
 
 const GameCard = ({ game }: Props) => {
-  const [imageSrc, setImageSrc] = useState(getCroppedImageUrl(game.background_image));
+  const [imageSrc, setImageSrc] = useState(
+    getCroppedImageUrl(game.background_image)
+  );
 
   return (
     <Card borderRadius="10px" overflow="hidden">
-      <Image
-        src={imageSrc}
-        onError={() => setImageSrc(noImage)}
-      />
+      <Image src={imageSrc} onError={() => setImageSrc(noImage)} />
 
       <CardBody>
-        <Heading fontSize={{ base: "lg", md: "xl", lg: "2xl" }}>
-          {game.name}
-        </Heading>
-
-        <HStack justifyContent="space-between">
-          <PlatformiconList platforms={game.parent_platforms.map((p) => p.platform)} />
+        <HStack justifyContent="space-between" marginBottom={3}>
+          <PlatformiconList
+            platforms={game.parent_platforms.map((p) => p.platform)}
+          />
           <CriticScore score={game.metacritic} />
         </HStack>
+
+        <Heading fontSize="2xl">{game.name}</Heading>
       </CardBody>
     </Card>
   );
