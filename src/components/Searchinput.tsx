@@ -1,31 +1,40 @@
 import { Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { BsSearch } from "react-icons/bs";
 
 interface Props {
-    onSearch : (searchText : string ) => void; 
+  onSearch: (searchText: string) => void;
+  searchText: string;
 }
 
+const SearchInput = ({ onSearch, searchText }: Props) => {
+  const ref = useRef<HTMLInputElement>(null);
+  const [inputValue, setInputValue] = useState(searchText);
 
-const SearchInput = ({onSearch}:Props)  => {
-    const ref = useRef<HTMLInputElement> (null); 
+  useEffect(() => {
+    setInputValue(searchText);
+  }, [searchText]);
 
   return (
-    <form onSubmit = {(event) => {
-        event.preventDefault(); 
-        if(ref.current) onSearch(ref.current.value);
-    }}>
-        <InputGroup>
-          <InputLeftElement>
-            <BsSearch />
-          </InputLeftElement>
-          <Input
+    <form
+      onSubmit={(event) => {
+        event.preventDefault();
+        onSearch(inputValue.trim());
+      }}
+    >
+      <InputGroup>
+        <InputLeftElement>
+          <BsSearch />
+        </InputLeftElement>
+        <Input
           ref={ref}
-            borderRadius={20}
-            placeholder="Search games..."
-            variant="filled"
-          />
-        </InputGroup>
+          value={inputValue}
+          onChange={(event) => setInputValue(event.target.value)}
+          borderRadius={20}
+          placeholder="Search games..."
+          variant="filled"
+        />
+      </InputGroup>
     </form>
   );
 };
