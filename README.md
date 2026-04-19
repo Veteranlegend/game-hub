@@ -1,5 +1,5 @@
 # Game Hub
-![Game Hub Preview](https://raw.githubusercontent.com/Veteranlegend/game-hub/main/preview.png)
+[![Game Hub Preview](https://raw.githubusercontent.com/Veteranlegend/game-hub/main/preview.png)](https://raw.githubusercontent.com/Veteranlegend/game-hub/refs/heads/main/Preview.png)
 
 A modern game discovery web application built with React, TypeScript, Vite, and Chakra UI.  
 Browse games, filter by genre and platform, and search for titles through a clean and responsive interface.
